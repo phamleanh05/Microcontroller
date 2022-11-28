@@ -19,9 +19,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "timer.h"
-#include "output_7seg.h"
-#include "input_reading.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -203,12 +200,12 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, EN0_Pin|EN1_Pin|EN2_Pin|EN3_Pin
-                          |R0_Pin|R1_Pin|Y0_Pin|Y1_Pin
-                          |G0_Pin|G1_Pin, GPIO_PIN_RESET);
+                          |LED_RED_Pin|LED_RED1_Pin|LED_AMBER_Pin|LED_AMBER1_Pin
+                          |LED_GREEN_Pin|LED_GREEN1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, A_Pin|B_Pin|C_Pin|D_Pin
-                          |E_Pin|F_Pin|G_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, A_7SEG_Pin|B_7SEG_Pin|C_7SEG_Pin|D_7SEG_Pin
+                          |E_7SEG_Pin|F_7SEG_Pin|G_7SEG_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : Btn1_Pin Btn2_Pin Btn3_Pin */
   GPIO_InitStruct.Pin = Btn1_Pin|Btn2_Pin|Btn3_Pin;
@@ -217,20 +214,20 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : EN0_Pin EN1_Pin EN2_Pin EN3_Pin
-                           R0_Pin R1_Pin Y0_Pin Y1_Pin
-                           G0_Pin G1_Pin */
+                           LED_RED_Pin LED_RED1_Pin LED_AMBER_Pin LED_AMBER1_Pin
+                           LED_GREEN_Pin LED_GREEN1_Pin */
   GPIO_InitStruct.Pin = EN0_Pin|EN1_Pin|EN2_Pin|EN3_Pin
-                          |R0_Pin|R1_Pin|Y0_Pin|Y1_Pin
-                          |G0_Pin|G1_Pin;
+                          |LED_RED_Pin|LED_RED1_Pin|LED_AMBER_Pin|LED_AMBER1_Pin
+                          |LED_GREEN_Pin|LED_GREEN1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : A_Pin B_Pin C_Pin D_Pin
-                           E_Pin F_Pin G_Pin */
-  GPIO_InitStruct.Pin = A_Pin|B_Pin|C_Pin|D_Pin
-                          |E_Pin|F_Pin|G_Pin;
+  /*Configure GPIO pins : A_7SEG_Pin B_7SEG_Pin C_7SEG_Pin D_7SEG_Pin
+                           E_7SEG_Pin F_7SEG_Pin G_7SEG_Pin */
+  GPIO_InitStruct.Pin = A_7SEG_Pin|B_7SEG_Pin|C_7SEG_Pin|D_7SEG_Pin
+                          |E_7SEG_Pin|F_7SEG_Pin|G_7SEG_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -249,7 +246,7 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
 
 	 if(traffic_light_counter <= 0) {
 		 traffic_light_counter = 101;
-	      mode_changing(mode);
+	      mode(mode);
 	 }
 
 	 if(led_7seg_counter <= 0) {

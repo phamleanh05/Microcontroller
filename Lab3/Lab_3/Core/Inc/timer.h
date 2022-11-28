@@ -1,16 +1,9 @@
-/*
- * timer.h
- *
- *  Created on: Nov 20, 2022
- *      Author: DucNguyen
- */
-
 #ifndef INC_TIMER_H_
 #define INC_TIMER_H_
+#include <displays.h>
+#include <mode.h>
 #include "main.h"
 #include "input_reading.h"
-#include "mode_processing.h"
-#include  "output_7seg.h"
 
 
 
