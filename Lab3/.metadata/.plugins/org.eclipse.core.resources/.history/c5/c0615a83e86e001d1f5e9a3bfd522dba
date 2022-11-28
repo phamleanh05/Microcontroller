@@ -11,33 +11,33 @@ void fsm_for_input_processing(void){
 						mode++;
 						if(mode >= NO_OF_MODES){
 							mode = 0;
-							if (led[1] == 0 || led[2] == 0 || led[3] == 0){
-								state = 0;
-								led_buffer[1] = led_buffer[2] = led_buffer[3] = 0;
+							if (led_time[Red] == 0 || led_time[Green] == 0 || led_time[Yellow] == 0){
+								light_state = Idle;
+								led_time_buffer[Red] = led_time_buffer[Green] = led_time_buffer[Yellow] = 0;
 								updateClockBuffer(0,mode);
 							}
 							else{
-								state = 1;
-								horizontal = led[1];
-								vertical = led[2];
+								light_state = Red;
+								horizontal = led_time[Red];
+								vertical = led_time[Green];
 							}
 						}
 						else {
-							state = 0;
+							light_state = Idle;
 							updateClockBuffer(led_buffer[mode-1],mode);
 						}
 					}
 					else if ( is_button_pressed (1) ){
 						button = PRESSED_BUTTON_1;
 						if (mode > 0 && mode < NO_OF_MODES){
-							led_buffer[mode-1]++;
+							led_time_buffer[mode-1]++;
 							updateClockBuffer(led_buffer[mode-1], mode);
 						}
 					}
 					else if ( is_button_pressed (2) ){
 						button = PRESSED_BUTTON_2;
 						if (mode > 0 && mode < NO_OF_MODES){
-							led[mode-1] = led_buffer[mode-1];
+							led_time[mode-1] = led_buffer[mode-1];
 						}
 					}
 					break ;

@@ -23,7 +23,7 @@ void fsm_for_input_processing(void){
 							}
 						}
 						else {
-							state = 0;
+							state = Idle;
 							updateClockBuffer(led_buffer[mode-1],mode);
 						}
 					}

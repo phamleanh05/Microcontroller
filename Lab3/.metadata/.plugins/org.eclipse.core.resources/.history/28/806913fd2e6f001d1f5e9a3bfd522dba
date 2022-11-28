@@ -4,7 +4,7 @@
 #include "main.h"
 #include "input_processing.h"
 
-void mode(void);
+void normal_mode(void);
 extern int led[3];
 extern int horizontal;
 extern int vertical;
