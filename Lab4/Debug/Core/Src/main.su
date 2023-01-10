@@ -1,0 +1,11 @@
+main.c:63:6:Function_A	8	static
+main.c:66:6:Function_B	8	static
+main.c:69:6:Function_C	8	static
+main.c:72:6:Function_D	8	static
+main.c:75:6:Function_E	8	static
+main.c:85:5:main	8	static
+main.c:143:6:SystemClock_Config	72	static
+main.c:179:13:MX_TIM2_Init	32	static
+main.c:224:13:MX_GPIO_Init	32	static
+main.c:279:6:HAL_TIM_PeriodElapsedCallback	16	static
+main.c:288:6:Error_Handler	4	static,ignoring_inline_asm
